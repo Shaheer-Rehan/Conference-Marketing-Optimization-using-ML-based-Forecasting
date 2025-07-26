@@ -1,17 +1,15 @@
 # Conference Marketing Optimization using ML-based Forecasting
 
 ## Project Overview
-This project is designed to predict event bookings and attendance using an Elastic Net Regression model and a graphical user interface (GUI) built with Tkinter. The system allows event organizers to input event-related data and receive predictions on the total number of bookings and expected attendance for their event. Predictions are provided both with and without advertisement campaigns, giving users insights into how marketing efforts could influence their event's success.
+This project is designed to predict event bookings and attendance using an Elastic Net Regression model. The system allows event organizers to input event-related data and receive predictions on the total number of bookings expected for their event. Predictions are provided both with and without advertisement campaigns, giving users insights into how marketing efforts could influence their event's success.
 
-This repository contains the python script files for the comparative study of different machine learning models tested for the purposes of forecasting conference registration numbers using the available data. The Elastic Net Regression model was the one that performed the best, and so it is the model that is used in the **Prediction Model and GUI** folder of this repository. All other folders contain script files for different stages of the project like data analysis, comparative study of the prediction models, and imputation of missing data, to provide transparency into the workflow. 
+This repository contains the Python script file **DataPrep.py** for data preprocessing, the **PredictionModelPerformance.ipynb** file analysing the performance of the Elastic Net Regression model for the task of predicting event bookings, and the **FinalPredictionModel.ipynb** notebook which allows users to interact with the prediction model to carry out predictions for any future/current event. The model is based on event data from an industrial client, and as such, is tailored for the use case of said client, however, by adding .csv files with formatting consistent to the existing ones, the database for the prediction model can be expanded to achieve more generic results. 
 
-For the end-user application, only the **Prediction Model and GUI** folder is of importance.
+The Elastic Net Regression model was selected after performing a comparative study of several candidate models, including other regression and time series ML models. 
 
 ## Key Features:
-- Predict total bookings for an event.
-- Predict expected attendance based on historical data.
+- Predict total bookings for an event based on current registration/booking counts.
 - Simulate the effect of advertisement campaigns on bookings.
-- User-friendly GUI for entering event details and displaying results.
 
 ## Installation
 To set up the project locally, follow these steps:
@@ -20,7 +18,6 @@ git clone https://github.com/Shaheer-Rehan/Conference-Marketing-Optimization-usi
 cd Conference-Marketing-Optimization-using-ML-based-Forecasting
 2. Install the required dependencies. These include:  
 - Python 3.8+
-- Tkinter (for GUI)
 - pandas
 - scikit-learn (v1.4.0)
 - datetime (v5.4)
@@ -31,30 +28,16 @@ The Elastic Net Regression model is used to train on event-related data and book
 - **ElasticNetCV** is used to select the optimal alpha and l1_ratio for the regression model.
 - Predictions are generated for both scenarios: with and without advertisements.
 
-### GUI Overview:
-The GUI allows users to input:
+### User Interface:
+The User Interface allows users to input:
 - Start Date (dd/mm/yyyy)
 - Event Date (dd/mm/yyyy)
 - Current Date (dd/mm/yyyy)
 - Current Number of Bookings
 - Target Audience (e.g., IT Managers, Property Managers, etc.)  
 
-Upon submission, the model generates predictions, including:
-- Total Predicted Bookings without advertisement.
-- Total Predicted Bookings with advertisement.
-- Expected Attendance based on historical trends.
+Upon submission, the model predicts the total number of bookings up to the Event Date.
 
 ### Backend Files:
 1. **DataPrep.py:** Responsible for preparing and preprocessing the event data.
-2. **FinalModel.py:** Contains the model logic for Elastic Net Regression.
-3. **GUI.py:** Contains the script to launch the GUI window.
-4. **CSV Files:** The csv files in the **Prediction Model and GUI** folder are required for to extract the event data and train the model.
-5. **Software Guide.pdf:** This file contains basic instructions on how to use the application, and again lists all the files needed for the application to work properly. All the required files are present in the **Prediction Model and GUI** folder.
-
-## Repository Folders
-- **Classification Models:** Contains the Python scripts for the classification models (Logistic Regression, Decision Trees, Random Forests) that were used to try and predict the number of registrations of an event.
-- **Data Analysis:** Contains a Python script to analyze the raw data to give an insight on the data set.
-- **Data Imputation:** Contains the Python scripts for the Imputation techniques that were compared to assess which method showed best performance for handling the missing data. The techniques used for this were linear regression, logistic regression, mode, and KNN.
-- **Prediction Model and GUI:** Contains the Python scripts for the final application, the GUI window, and the required csv files.
-- **Regression Models:** Contains the Python scripts for the regression models (OLS Linear Regression, Elastic Net Regression, Regression Trees) that were used to try and predict the number of registrations of an event.
-- **Time Series Models:** Contains the Python scripts for the time series models (ARIMA, SARIMAX, Exponential Smoothing) that were used to try and predict the number of registrations of an event.
+2. **CSV Files:** The .csv files in the **Prediction Model and GUI** folder are required to extract the event data and train the model.
